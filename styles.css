@@ -48,6 +48,8 @@ body {
 }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
+[hidden] { display: none !important; }
+.prose a, .term__short a, .faq__a a, .lead a { color: var(--pace-indigo); text-decoration: underline; text-underline-offset: 3px; }
 a:hover { text-decoration: none; }
 :focus-visible { outline: 2px solid var(--pace-indigo); outline-offset: 3px; border-radius: 4px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -227,7 +229,8 @@ p { margin: 0; }
 .footer::before { content: ''; position: absolute; inset: 0; background: var(--tex-signal); pointer-events: none; }
 .footer > .container { position: relative; }
 .footer__grid { display: grid; gap: 32px; padding: 56px 0 40px; }
-@media (min-width: 720px) { .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+@media (min-width: 720px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1000px) { .footer__grid { grid-template-columns: 1.3fr 1fr 1fr 1fr 1.2fr; } }
 .footer .label { color: var(--muted); margin-bottom: 12px; }
 .footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
 .footer a { color: rgba(247,247,245,.8); font-size: 15px; }
@@ -235,3 +238,37 @@ p { margin: 0; }
 .footer__tagline { color: var(--muted); margin-top: 12px; max-width: 32ch; }
 .footer__bottom { border-top: 1px solid rgba(247,247,245,.1); padding: 20px 0 28px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); }
 .footer__bottom a { color: var(--muted); font-size: 13px; }
+
+/* ---- ferramentas: tabela de pace, calculadora, glossário -------------- */
+.table-wrap { overflow-x: auto; border: 1px solid var(--mist); border-radius: var(--r-card); background: var(--white); }
+.table-wrap--scroll { max-height: 360px; overflow-y: auto; }
+.pace-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.pace-table th, .pace-table td { padding: 10px 14px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--mist); font-variant-numeric: tabular-nums; }
+.pace-table th { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--slate); }
+.pace-table thead th { position: sticky; top: 0; background: var(--paper); }
+.pace-table tbody th { text-align: left; color: var(--graphite); font-family: var(--font-body); font-size: 14px; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.pace-table tbody tr:nth-child(6n) th, .pace-table tbody tr:nth-child(6n) td { border-bottom-color: var(--pace-indigo); }
+.pace-table--compact th, .pace-table--compact td { padding: 8px 10px; }
+.pace-table tr:last-child th, .pace-table tr:last-child td { border-bottom: 0; }
+
+.calc { display: grid; gap: 16px; }
+.calc__modes { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.pill--choice { cursor: pointer; }
+.pill--choice input { accent-color: var(--pace-indigo); margin: 0 2px 0 0; }
+.pill--choice:has(input:checked) { border-color: var(--pace-indigo); color: var(--pace-indigo); background: var(--indigo-soft); }
+.calc__row { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+.field { display: block; }
+.field .label { display: block; margin-bottom: 6px; }
+.field input, .field select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--mist); border-radius: var(--r-field); background: var(--white); color: var(--graphite); font: 500 16px var(--font-body); }
+.field input:focus, .field select:focus { outline: none; border-color: var(--pace-indigo); box-shadow: 0 0 0 3px rgba(75,59,255,.15); }
+.calc__out { margin-top: 24px; }
+.calc__out .stat__value { font-size: 24px; }
+
+.terms { margin-top: 28px; display: grid; gap: 12px; }
+.term { background: var(--white); border: 1px solid var(--mist); border-radius: var(--r-card); padding: 18px 20px; scroll-margin-top: 90px; }
+.term h2 { font-size: 20px; margin: 0; }
+.term h2 a { color: inherit; text-decoration: none; }
+.term h2 a:hover { color: var(--pace-indigo); }
+.term__short { margin: 6px 0 0; color: var(--ink); }
+.term__detail { margin: 6px 0 0; color: var(--slate); font-size: 14px; }
+.term:target { border-color: var(--pace-indigo); }
