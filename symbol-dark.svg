@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PaceOn">
+  <title>PaceOn</title>
+  <!-- Sobre fundo escuro: traços em papel, o último em ciano. -->
+  <g fill="none" stroke-linecap="round" stroke-width="7">
+    <path d="M10 48 L16 36" stroke="#F7F7F5"/>
+    <path d="M24 48 L34 28" stroke="#F7F7F5"/>
+    <path d="M38 48 L52 20" stroke="#00E5C7"/>
+  </g>
+</svg>

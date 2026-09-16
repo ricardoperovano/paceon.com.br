@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PaceOn">
+  <!-- Abaixo de 24 px o traço engrossa para 10, senão some. Fundo grafite para ler em qualquer aba. -->
+  <rect width="64" height="64" rx="15" fill="#0A0E17"/>
+  <g fill="none" stroke-linecap="round" stroke-width="10">
+    <path d="M12 48 L17 38" stroke="#F7F7F5"/>
+    <path d="M25 48 L33 32" stroke="#F7F7F5"/>
+    <path d="M38 48 L50 24" stroke="#00E5C7"/>
+  </g>
+</svg>

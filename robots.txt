@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://paceon.com.br/sitemap.xml
