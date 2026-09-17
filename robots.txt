@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://ricardoperovano.github.io/paceon.com.br/sitemap.xml
+Sitemap: https://paceon.com.br/sitemap.xml
