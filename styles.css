@@ -151,6 +151,8 @@ p { margin: 0; }
 .nav a:hover, .nav a[aria-current] { color: var(--graphite); }
 .header__cta { display: flex; align-items: center; gap: 10px; }
 .header__login { display: none; font-weight: 500; font-size: 15px; color: var(--ink); }
+.header__lang { display: inline-flex; align-items: center; height: 32px; padding: 0 10px; border-radius: var(--r-pill); border: 1px solid var(--mist); background: var(--white); font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; color: var(--slate); }
+.header__lang:hover { color: var(--graphite); border-color: var(--slate); }
 .menu-toggle { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--mist); background: var(--white); cursor: pointer; }
 .menu-toggle svg { width: 20px; height: 20px; stroke: var(--graphite); }
 .mobile-nav { display: none; border-top: 1px solid var(--mist); background: var(--paper); }
