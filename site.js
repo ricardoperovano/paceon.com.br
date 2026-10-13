@@ -55,3 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
   })
   document.body.appendChild(box)
 })
+
+// Clique no cadastro: evento no Analytics, só quando ele já carregou (ou seja, com consentimento).
+// Serve para acompanhar quantos visitantes do site seguem para o app.
+document.addEventListener('click', function (event) {
+  var link = event.target && event.target.closest ? event.target.closest('a[href]') : null
+  if (!link || typeof window.gtag !== 'function') return
+  if (link.href.indexOf('/register') === -1) return
+  window.gtag('event', 'sign_up_click', { link_url: link.href, page_path: location.pathname })
+})
