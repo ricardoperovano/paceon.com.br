@@ -56,13 +56,21 @@ document.addEventListener('DOMContentLoaded', function () {
   document.body.appendChild(box)
 })
 
-// Eventos no Analytics. Todos passam por `send`, que só envia se o gtag já
-// carregou — ou seja, se houve consentimento. Sem aceite, nada sai daqui.
+// Eventos no Analytics. Todos passam por `send`, que só envia depois do
+// consentimento (é o aceite que carrega o script). Sem aceite, nada sai daqui.
+//
+// Com contêiner do Tag Manager o evento vai para o dataLayer no formato que os
+// acionadores dele entendem; sem contêiner, vai direto para o GA4 pelo gtag.
 function send(name, params) {
-  if (typeof window.gtag !== 'function') return
+  if (!window.__gaLoaded) return
   params = params || {}
   params.page_path = location.pathname
-  window.gtag('event', name, params)
+  if (window.__gtm) {
+    params.event = name
+    window.dataLayer.push(params)
+    return
+  }
+  if (typeof window.gtag === 'function') window.gtag('event', name, params)
 }
 
 // Clique no cadastro: quantos visitantes do site seguem para o app, e de onde
