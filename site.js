@@ -56,11 +56,61 @@ document.addEventListener('DOMContentLoaded', function () {
   document.body.appendChild(box)
 })
 
-// Clique no cadastro: evento no Analytics, só quando ele já carregou (ou seja, com consentimento).
-// Serve para acompanhar quantos visitantes do site seguem para o app.
+// Eventos no Analytics. Todos passam por `send`, que só envia se o gtag já
+// carregou — ou seja, se houve consentimento. Sem aceite, nada sai daqui.
+function send(name, params) {
+  if (typeof window.gtag !== 'function') return
+  params = params || {}
+  params.page_path = location.pathname
+  window.gtag('event', name, params)
+}
+
+// Clique no cadastro: quantos visitantes do site seguem para o app, e de onde
+// no texto saíram (o topo, o meio ou o fim da página).
 document.addEventListener('click', function (event) {
   var link = event.target && event.target.closest ? event.target.closest('a[href]') : null
-  if (!link || typeof window.gtag !== 'function') return
-  if (link.href.indexOf('/register') === -1) return
-  window.gtag('event', 'sign_up_click', { link_url: link.href, page_path: location.pathname })
+  if (!link) return
+  if (link.href.indexOf('/register') !== -1) {
+    send('sign_up_click', { link_url: link.href, scroll_depth: depthReached })
+    return
+  }
+  if (link.href.indexOf('/planos') !== -1 || link.href.indexOf('/pricing') !== -1) {
+    send('view_pricing_click', { link_url: link.href })
+  }
+})
+
+// Profundidade de leitura: 25%, 50%, 75% e 100%, uma vez cada. Responde "quem
+// leu a página até o fim?" — e, cruzado com sign_up_click, quem leu e se cadastrou.
+var DEPTHS = [25, 50, 75, 100]
+var depthReached = 0
+document.addEventListener('DOMContentLoaded', function () {
+  var sent = {}
+  function check() {
+    var doc = document.documentElement
+    var scrollable = doc.scrollHeight - window.innerHeight
+    // Página curta demais para rolar: já está inteira na tela.
+    var percent = scrollable > 40 ? ((window.scrollY + window.innerHeight) / doc.scrollHeight) * 100 : 100
+    for (var i = 0; i < DEPTHS.length; i++) {
+      var mark = DEPTHS[i]
+      if (percent + 0.5 >= mark && !sent[mark]) {
+        sent[mark] = true
+        depthReached = mark
+        send('scroll_depth', { percent: mark })
+      }
+    }
+  }
+  var waiting = false
+  window.addEventListener(
+    'scroll',
+    function () {
+      if (waiting) return
+      waiting = true
+      window.requestAnimationFrame(function () {
+        waiting = false
+        check()
+      })
+    },
+    { passive: true },
+  )
+  check()
 })
