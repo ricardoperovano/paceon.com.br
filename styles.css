@@ -305,3 +305,10 @@ p { margin: 0; }
 .consent__actions { display: flex; gap: 8px; }
 .consent .btn { padding: 10px 16px; font-size: 11px; }
 .consent .btn--secondary { border-color: #5A6070; color: var(--paper); }
+
+/* ---- "a atenção que você não teve": destaque dentro do Diferencial ------- */
+/* A seção é grafite: o bloco usa as cores do escuro (ciano puro no traço,
+   papel no título, mist no texto) — não as do site claro. */
+.attention { max-width: 720px; margin: 0 0 32px; padding: 20px 24px; border-left: 3px solid var(--flow-cyan); background: rgba(0, 229, 199, 0.08); border-radius: 0 var(--r-card) var(--r-card) 0; }
+.attention h3 { margin: 0 0 8px; font-family: var(--font-display); font-size: 20px; letter-spacing: -0.01em; color: var(--paper); }
+.attention p { margin: 0; color: var(--mist); }
