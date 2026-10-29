@@ -165,6 +165,7 @@ p { margin: 0; }
 .hero__grid { display: grid; gap: 40px; align-items: center; }
 @media (min-width: 960px) { .hero__grid { grid-template-columns: 1.05fr .95fr; gap: 56px; } .hero { padding: 88px 0 96px; } }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero__trial { margin-top: 12px; font-size: 14px; color: var(--muted); }
 .hero__proof { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 26px; font-size: 14px; color: var(--slate); list-style: none; padding: 0; }
 .hero__proof li::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--go-green); margin-right: 8px; vertical-align: 2px; }
 
